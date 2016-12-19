@@ -1,0 +1,12 @@
+C:\Chebotov\programming\Projects\Work\Oscillator\Oscillator\bin\Debug\Oscillator.exe.config
+C:\Chebotov\programming\Projects\Work\Oscillator\Oscillator\obj\Debug\Oscillator.csprojResolveAssemblyReference.cache
+C:\Chebotov\programming\Projects\Work\Oscillator\Oscillator\obj\Debug\Oscillator.FormMain.resources
+C:\Chebotov\programming\Projects\Work\Oscillator\Oscillator\obj\Debug\Oscillator.Properties.Resources.resources
+C:\Chebotov\programming\Projects\Work\Oscillator\Oscillator\obj\Debug\Oscillator.csproj.GenerateResource.Cache
+C:\Chebotov\programming\Projects\Work\Oscillator\Oscillator\bin\Debug\Oscillator.exe
+C:\Chebotov\programming\Projects\Work\Oscillator\Oscillator\bin\Debug\Oscillator.pdb
+C:\Chebotov\programming\Projects\Work\Oscillator\Oscillator\bin\Debug\NAudio.dll
+C:\Chebotov\programming\Projects\Work\Oscillator\Oscillator\bin\Debug\NAudio.WindowsMediaFormat.dll
+C:\Chebotov\programming\Projects\Work\Oscillator\Oscillator\bin\Debug\NAudio.xml
+C:\Chebotov\programming\Projects\Work\Oscillator\Oscillator\obj\Debug\Oscillator.exe
+C:\Chebotov\programming\Projects\Work\Oscillator\Oscillator\obj\Debug\Oscillator.pdb
