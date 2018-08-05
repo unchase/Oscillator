@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NAudio.Wave;
 
 namespace Oscillator
@@ -26,7 +22,7 @@ namespace Oscillator
     public class SignalGenerator : ISampleProvider
     {
         // Формат сигнала
-        private readonly WaveFormat waveFormat;
+        private readonly WaveFormat _waveFormat;
 
         // Математическая константа
         private const double TwoPi = 2*Math.PI;
@@ -50,7 +46,7 @@ namespace Oscillator
         /// <param name="channel">Количество каналов</param>
         public SignalGenerator(int sampleRate, int channel)
         {
-            waveFormat = WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channel);
+            _waveFormat = WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channel);
 
             // По-умолчанию
             Type = SignalGeneratorType.Sin;
@@ -64,7 +60,7 @@ namespace Oscillator
         /// </summary>
         public WaveFormat WaveFormat
         {
-            get { return waveFormat; }
+            get { return _waveFormat; }
         }
 
         /// <summary>
@@ -93,76 +89,56 @@ namespace Oscillator
         /// </summary>
         public int Read(float[] buffer, int offset, int count)
         {
-            int outIndex = offset;
-
-            // текущие значения генератора
-            double multiple;
-            double sampleValue;
-            double sampleSaw;
+            var outIndex = offset;
 
             // окончательный буффер
-            for (int sampleCount = 0; sampleCount < count/waveFormat.Channels; sampleCount++)
+            for (var sampleCount = 0; sampleCount < count/_waveFormat.Channels; sampleCount++)
             {
+                double multiple;
+                double sampleValue;
+                double sampleSaw;
                 switch (Type)
                 {
                     case SignalGeneratorType.Sin:
-
                         // Sinus генератор
-
-                        multiple = TwoPi*Frequency/waveFormat.SampleRate;
+                        multiple = TwoPi*Frequency/_waveFormat.SampleRate;
                         sampleValue = Gain*Math.Sin(nSample*multiple);
-
                         nSample++;
-
                         break;
-
-
                     case SignalGeneratorType.Square:
-
                         // Square генератор
-
-                        multiple = 2*Frequency/waveFormat.SampleRate;
+                        multiple = 2*Frequency/_waveFormat.SampleRate;
                         sampleSaw = ((nSample*multiple)%2) - 1;
                         sampleValue = sampleSaw > 0 ? Gain : -Gain;
-
                         nSample++;
                         break;
-
                     case SignalGeneratorType.Triangle:
-
                         // Triangle генератор
-
-                        multiple = 2*Frequency/waveFormat.SampleRate;
+                        multiple = 2*Frequency/_waveFormat.SampleRate;
                         sampleSaw = ((nSample*multiple)%2);
                         sampleValue = 2*sampleSaw;
                         if (sampleValue > 1)
                             sampleValue = 2 - sampleValue;
                         if (sampleValue < -1)
                             sampleValue = -2 - sampleValue;
-
                         sampleValue *= Gain;
-
                         nSample++;
                         break;
 
                     case SignalGeneratorType.SawTooth:
-
                         // SawTooth генератор
-
-                        multiple = 2*Frequency/waveFormat.SampleRate;
+                        multiple = 2*Frequency/_waveFormat.SampleRate;
                         sampleSaw = ((nSample*multiple)%2) - 1;
                         sampleValue = Gain*sampleSaw;
-
                         nSample++;
                         break;
-
                     default:
                         sampleValue = 0.0;
                         break;
                 }
 
                 // Phase Reverse для каждого канала
-                for (int i = 0; i < waveFormat.Channels; i++)
+                for (var i = 0; i < _waveFormat.Channels; i++)
                 {
                     if (PhaseReverse[i])
                         buffer[outIndex++] = (float) -sampleValue;
