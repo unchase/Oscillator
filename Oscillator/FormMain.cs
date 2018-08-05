@@ -276,7 +276,7 @@ namespace Oscillator
 
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Программа предназначена для генерации гармонических сигналов с частотой от 20Гц до 30000Гц.\nАвтор: Чеботов Николай Валерьевич.\n2014 г.", "О программе", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Программа предназначена для генерации гармонических сигналов с частотой от 20Гц до 30000Гц.\nАвтор: 'unchase' (https://github.com/unchase).\n2014 г.", "О программе", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void checkBoxPhaseReverse1Left_CheckedChanged(object sender, EventArgs e)
